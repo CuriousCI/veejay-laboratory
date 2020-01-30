@@ -1,7 +1,6 @@
 class Node {
   public boolean isVisible;
   private int seed;
-  private int index;
 
   public PVector position;
   public PShape model;
@@ -15,16 +14,16 @@ class Node {
   public Node(int seed, int index) {
     this.isVisible = true;
     this.seed = seed;
-    this.index = index;
 
-    //this.position = new PVector(random(1000), random(1000), random(1000));
-    this.position = new PVector(seed % 10, (seed % 100) / 10, (seed % 1000) / 100);
+    randomSeed(index);
+    this.position = new PVector(random(1000), random(1000), random(1000));
     this.model = new PShape();
 
     this.stroke = color(seed % 1000, seed % 1000 / index, seed % 100 * index);
     this.fill = color(seed % 100 * index, seed % 1000 / index, seed % 1000);
 
-    this.size = random(seed % 100 + 20);
+    randomSeed(seed);
+    this.size = random(20, 100);
     this.rotation = 0;
   }
 
@@ -40,7 +39,7 @@ class Node {
       box(this.size);
       popMatrix();
 
-      rotation += random(this.seed % 10 / 2);
+      rotation += random(random(1, 5));
     }
   }
 }

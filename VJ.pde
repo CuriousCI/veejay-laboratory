@@ -70,15 +70,7 @@ void setupNodes() {
     nodesCount = 5;
   }
   for (int index = 0; index < nodesCount; index++) {
-    nodes.add(new Node(seed, abs((seed % 10) - (index * 4)) + 1));
-  }
-  for (Node alpha : nodes) {
-    for (Node beta : nodes) {
-      if (alpha.position.dist(beta.position) < seed % 100) {
-        alpha.position.add(beta.position.x / 2, -beta.position.y / 2, 0);
-        beta.position.add(-alpha.position.x / 2, 0, alpha.position.z / 2);
-      }
-    }
+    nodes.add(new Node(seed, index + 1));
   }
 
   cameraEye = new PVector(0, 0, 0);
@@ -117,6 +109,9 @@ void draw() {
     execute();
   } else {
     lights();
+
+    textSize(height * 0.5);
+    text(nameInput.getText(), width * 0.05, width * 0.05);
 
     updateCamera();
     updateFocus();
