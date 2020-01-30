@@ -27,9 +27,8 @@ class Panel extends Component {
 
   @Override
     protected void displayBackground() {
-    fill(#FFFFFF);
-    stroke(#AA0000);
-    strokeWeight(0.1);
+    fill(#000000);
+    noStroke();
     rect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
   }
 

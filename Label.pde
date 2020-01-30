@@ -1,5 +1,4 @@
 public class Label extends Component {
-  private float x, y, _width, _height;
   private String text;
   private int textSize;
 
@@ -33,22 +32,22 @@ public class Label extends Component {
     this.setTextSize(1);
     textSize(1);
     while (textWidth(this.text) < this.getWidth()*0.8 && this.textSize < this.getHeight()*0.8) {
-      textSize(this.textSize);
       this.textSize++;
+      textSize(this.textSize);
     }
   }
 
   @Override
     protected void displayBackground() {
-    fill(#FFFFFF);
-    stroke(#AA0000);
+    fill(#000000);
+    stroke(#FFFFFF);
     strokeWeight(0.5);
     rect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
   }
 
   protected void displayText() {
-    fill(#AA0000);
-    stroke(#AA0000);
+    fill(#FFFFFF);
+    stroke(#FFFFFF);
     strokeWeight(2);
     textSize(this.textSize);
     text(this.getText(), this.getX()+(this.getWidth()*0.5-textWidth(this.getText())*0.5), this.getY()+this.getHeight()*0.5);
