@@ -1,6 +1,7 @@
 class Node {
   public boolean isVisible;
   private int seed;
+  public int rare;
 
   public PVector position;
   public PShape model;
@@ -11,19 +12,32 @@ class Node {
   public float size;
   public float rotation;
 
-  public Node(int seed, int index) {
+  public Node(int seed, int index/*, String filename*/) {
     this.isVisible = true;
-    this.seed = seed;
 
-    randomSeed(index);
-    this.position = new PVector(random(1000), random(1000), random(1000));
-    this.model = new PShape();
-
-    this.stroke = color(seed % 1000, seed % 1000 / index, seed % 100 * index);
-    this.fill = color(seed % 100 * index, seed % 1000 / index, seed % 1000);
+    randomSeed(seed / 100 + index * 123291);
+    this.position = new PVector(random(3000), random(3000), random(3000));
+    //this.model = loadShape(filename);
 
     randomSeed(seed);
+    this.rare = int(random(1, 10));
+
+    if (rare <= 3) {
+      this.stroke = color(#FFFFFF);
+      this.fill = color(#505050);
+    } else if (rare >= 15) {
+      this.fill = color(0, 0, 0, 0);
+      this.stroke = color(seed % 1000, seed % 1000 / index, seed % 100 * index);
+    } else {
+      this.stroke = color(seed % 1000, seed % 1000 / index, seed % 100 * index);
+      this.fill = color(seed % 100 * index, seed % 1000 / index, seed % 1000);
+    }
+
+    randomSeed(seed + index);
     this.size = random(20, 100);
+    if (rare <= 3) {
+      this.size = 300;
+    }
     this.rotation = 0;
   }
 
@@ -37,9 +51,16 @@ class Node {
       fill(this.fill);
 
       box(this.size);
+      //shape(this.model);
       popMatrix();
 
-      rotation += random(random(1, 5));
+      if (rare > 5 && rare < 15) {
+        rotation += random(1, 5);
+      } else if (rare >= 15) {
+        rotation += random(15, 20);
+      } else if (rare == 1) {
+        rotation -= random(3, 7);
+      }
     }
   }
 }

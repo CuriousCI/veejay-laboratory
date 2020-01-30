@@ -44,7 +44,7 @@ void updateCamera() {
 }
 
 void updateFocus() {
-  if (!updateVector(cameraDirection, nodes.get(focusedElementIndex + 1).position)) {
+  if (!updateVector(cameraDirection, nodes.get(focusedElementIndex +  1).position)) {
     if (!updateVector(cameraEye, nodes.get(focusedElementIndex).position)) {
       focusedElementIndex++;
       if (focusedElementIndex == nodesCount - 1) {
@@ -70,8 +70,18 @@ void setupNodes() {
     nodesCount = 5;
   }
   for (int index = 0; index < nodesCount; index++) {
-    nodes.add(new Node(seed, index + 1));
+    nodes.add(new Node(seed, index + 1/*, "model0.obj"*/));
   }
+
+  //for (Node alpha : nodes) {
+  //  for (Node beta : nodes) {
+  //    if (alpha.position.dist(beta.position) < 200) {
+  //      PVector distantiator = new PVector (10, 10, 10); 
+  //      alpha.position.add(distantiator);
+  //      beta.position.sub(distantiator);
+  //    }
+  //  }
+  //}
 
   cameraEye = new PVector(0, 0, 0);
   cameraDirection = new PVector(0, 0, 0);
@@ -110,8 +120,11 @@ void draw() {
   } else {
     lights();
 
-    textSize(height * 0.5);
-    text(nameInput.getText(), width * 0.05, width * 0.05);
+    //pushMatrix();
+    //translate(cameraDirection.x, cameraDirection.y, cameraDirection.z);
+    //textSize(height * 0.5);
+    //text(nameInput.getText(), 0, 0);
+    //popMatrix();
 
     updateCamera();
     updateFocus();
