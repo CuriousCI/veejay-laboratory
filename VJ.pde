@@ -120,11 +120,11 @@ void draw() {
   } else {
     lights();
 
-    //pushMatrix();
-    //translate(cameraDirection.x, cameraDirection.y, cameraDirection.z);
-    //textSize(height * 0.5);
-    //text(nameInput.getText(), 0, 0);
-    //popMatrix();
+    pushMatrix();
+    translate(cameraDirection.x * 1.5, cameraDirection.y * 1.5, cameraDirection.z);
+    textSize(height * 0.5);
+    text(nameInput.getText(), 0, 0);
+    popMatrix();
 
     updateCamera();
     updateFocus();

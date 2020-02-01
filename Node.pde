@@ -20,7 +20,7 @@ class Node {
     //this.model = loadShape(filename);
 
     randomSeed(seed);
-    this.rare = int(random(1, 10));
+    this.rare = int(random(1, 20));
 
     if (rare <= 3) {
       this.stroke = color(#FFFFFF);
